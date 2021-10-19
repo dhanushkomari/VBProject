@@ -1,0 +1,30 @@
+http://127.0.0.1:8000/api/voice/upload   ----->    to post voice data
+
+http://127.0.0.1:8000/version/latest     ----->    to fetch the latest version settings
+
+Admin ---> add version settings/ update version settings
+
+
+Admin Login
+==========
+username  :   admin
+password  :   admin123
+
+SETUP
+=====
+Create virtual environment in python by using Following command
+
+python -m venv NameOfTheEnvironment
+
+Activate the virtual environment.
+
+Scripts\activate
+
+install the required libraries using the following command.
+
+pip install -r requirements.txt
+
+Change directory to FlunkyProject folder. Run the Following Commands.
+
+python3 manage.py runserver
+
