@@ -1,0 +1,55 @@
+{% load static %}
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="{% static "assets/js/jquery.table2excel.js" %}"></script>
+    <link rel="stylesheet" href="{% static "assets/js/style.css" %}">
+    <script src="{% static "assets/js/script.js" %}"></script>
+  </head>
+
+  <body>
+    <h1>Hello Plunker!</h1>
+    <p><button id="btn-export">Export</button></p>
+    <table id="example" class="display" cellspacing="0" width="100%">
+
+      <thead>
+        <tr>
+          <th>Bot_ID</th>
+          <th>file</th>
+          <th>Speech To Text</th>
+          <th>Type</th>
+          <th>Output</th>
+          <th>Language</th>
+          <th>Time</th>
+          <th>Updated_at</th>
+        </tr>
+      </thead>
+
+    
+{% if v %}
+      <tbody>
+          {% for v in v%}
+        <tr>
+          <td>{{v.bot_id}}</td>
+          <td>{{v.file}}</td>
+          <td>{{v.speech_to_text}}</td>
+          <td>{{v.type}}</td>
+          <td>{{v.output}}</td>
+          <td>{{v.language}}</td>
+          <td>{{v.time}}</td>
+          <td>{{v.updated_at}}</td>
+        </tr>
+        {% endfor %}
+       
+        
+        
+      </tbody>
+{% endif %}
+    </table>
+    
+  </body>
+
+</html>

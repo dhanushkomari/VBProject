@@ -1,6 +1,6 @@
 from django.shortcuts import render, resolve_url
-from .serializers import VoiceSerializer, VersionSettingSerializer
-from .models import Voice, VersionSetting
+from .serializers import VoiceSerializer, VersionSettingSerializer, FlatVersionSerializer
+from .models import Voice, VersionSetting, FlatVersionSettings
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -57,3 +57,33 @@ def ByVerName(request, ver_name):
         return Response(serializers.data)
     except:
         return HttpResponse('<br><br><center><h1>No Version Found with the name</center></h1>')
+
+
+################  VERSION FLAT SETTINGS   ##########################
+@api_view(['GET'])
+def recent_flat(request):
+    try:
+        v = FlatVersionSettings.objects.latest('pk')
+        serialzers = FlatVersionSerializer(v, many = False)
+        return Response(serialzers.data)
+    except:
+        return HttpResponse('<br><br><center><h1>No Data Found, Please add some data</center></h1>')
+
+@api_view(['GET'])
+def ByFlatVerName(request, ver_name):
+    try:
+        v = FlatVersionSettings.objects.get(version_name = ver_name)
+        serializers = FlatVersionSerializer(v, many = False)
+        return Response(serializers.data)
+    except:
+        return HttpResponse('<br><br><center><h1>No Version Found with the name</center></h1>')
+
+##############   DOWNLOAD VOCIES  ##############
+def VoiceDownload(request):
+    v = Voice.objects.all()
+    print(v)
+    return render(request, 'api/all_voices.html', {'v':v})
+
+
+
+

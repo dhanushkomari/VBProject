@@ -1,4 +1,4 @@
-from .models import VersionSetting, Voice
+from .models import VersionSetting, Voice, FlatVersionSettings
 from rest_framework import serializers
 
 class VersionSettingSerializer(serializers.ModelSerializer):
@@ -9,4 +9,9 @@ class VersionSettingSerializer(serializers.ModelSerializer):
 class VoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voice
+        fields = '__all__'
+
+class FlatVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FlatVersionSettings
         fields = '__all__'
