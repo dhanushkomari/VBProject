@@ -8,7 +8,7 @@ from django.db import models
 ####################################################################
 
 class Voice(models.Model):
-    bot_id = models.CharField(max_length=20)
+    bot_id = models.CharField(max_length=500)
     file = models.FileField(upload_to='file_uploads', blank=True, null=True)
     speech_to_text = models.TextField()
     type = models.CharField(max_length = 30)

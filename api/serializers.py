@@ -15,3 +15,8 @@ class FlatVersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlatVersionSettings
         fields = '__all__'
+
+class VoiceFileSerializer(serializers.Serializer):
+    class Meta:
+        model = Voice
+        fields = ('file',)

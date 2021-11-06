@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>VB Project - Vistan Nextgen Pvt Ltd</h2>
+
+    <br>
+    <br>
+    <a href="{% url 'api:voice-download' %}">ALL DATA</a><br><br>
+    <a href="{% url 'api:today' %}">TODAY DATA</a> <br><br>
+
+    <h3>DATA BETWEEN TWO DATES</h3>
+        <form method="POST">
+            {% csrf_token %}
+            from date : <input type="date" name = 'start_date' required><br><br>
+            to date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="date" name = 'end_date' required> <br><br>
+            <button name = "two_dates" type = "submit" >submit</button>
+        </form>
+
+    <br><br>
+    <h3>SEARCH DATA BASED ON THE BOT NAME</h3>
+        <form method = "POST">
+            {% csrf_token %}
+            Enter BOT Name : <input type="text" name = 'search_by_name' required>
+            <br><br>
+            <button  name = "name_based_search" type="submit">Search</button>
+        </form>
+
+        
+</body>
+</html>

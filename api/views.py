@@ -11,6 +11,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 
 from api import serializers
 
+from datetime import date, datetime
+
 # Create your views here.
 
 #####################   VOICE API VIEWS    ######################
@@ -83,6 +85,38 @@ def VoiceDownload(request):
     v = Voice.objects.all()
     print(v)
     return render(request, 'api/all_voices.html', {'v':v})
+
+
+##############   DATA FILETERS    ################
+def Home(request):
+    if request.method == "POST":
+        if "two_dates" in request.POST:
+            print('two dates')
+            start_date = request.POST['start_date']
+            end_date = request.POST['end_date']
+            v = Voice.objects.filter(updated_at__range = (start_date, end_date))
+
+            return render(request, 'api/all_voices.html', {'v':v})
+
+        elif 'name_based_search' in request.POST:
+            print('name search')
+            v = Voice.objects.filter(bot_id__icontains = request.POST['search_by_name'])
+            return render(request, 'api/all_voices.html', {'v':v})
+    else:
+        print('no')
+        v = Voice.objects.all().distinct()
+        print(v)
+        return render(request, 'api/home.html')
+
+
+def DayFilterView(request):
+    v = Voice.objects.filter(updated_at__date = date.today())
+    print(v)
+    return render(request, 'api/all_voices.html', {'v':v})
+
+# def InputFilterView(request):
+
+
 
 
 

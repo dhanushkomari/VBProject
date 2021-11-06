@@ -19,4 +19,6 @@ urlpatterns = [
     path('flat-version/by-name/<str:ver_name>', views.ByFlatVerName, name = 'by-flat-name'),
 
     path('show-voices/', views.VoiceDownload, name = 'voice-download'),
+
+    path('today', views.DayFilterView, name = 'today')
 ]
